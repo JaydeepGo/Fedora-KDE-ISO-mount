@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/x-cd-image;model/x.stl-binary
+Actions=mount;unmount;
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+Icon=application-x-cd-image
+X-KDE-Submenu=ISO Mount/unmount 
+
+[Desktop Action unmount]
+Name=Unmount
+Icon=edit-redo
+Exec=  iso_manager-unmount-image.sh $(basename %f | sed 's/.iso$//')
+
+[Desktop Action mount]
+Name=Mount
+Icon=circular-arrow-shape
+Exec= iso_manager-mount-image.sh %f $(basename %f | sed 's/.iso$//')
