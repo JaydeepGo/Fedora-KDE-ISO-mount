@@ -9,5 +9,5 @@ These script don't require fuseiso.
 ## Installation
 
  - Copy the file "iso_mounter_unmounter.desktop" to `~/.local/share/kservices5/ServiceMenus/` 
- - Copy "iso_manager-mount-image.sh" and iso_manager-unmount-image.sh to `/usr/bin/`
+ - Copy "iso_manager-mount-image.sh" and "iso_manager-unmount-image.sh" to `/usr/bin/`
  - Give executable permission to both
