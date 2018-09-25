@@ -18,21 +18,18 @@ MOUNTEXIT=""
 
 cd /tmp/
 
-if [ -d $1 ]; then
-    sudo umount -l /tmp/$1
-    MOUNTEXIT=$?
-    rm  -rf $2
-else 
-    MOUNTEXIT=1
-fi
+password=$(kdialog --password "Enter your password")
+
+echo $password | sudo -S umount -l /tmp/$1
+MOUNTEXIT=$?
+rm  -rf $2
 
 
 if [ "$MOUNTEXIT" = "0" ]; then
-   kdialog --icon=ks-media-optical-mount --title="Unmount ISO Image" --passivepopup="[Finished] $1 Unmounted."
+        kdialog --icon=ks-media-optical-mount --title="Unmount ISO Image" --passivepopup="[Finished] $1 Unmounted."
 else
-   kdialog --icon=ks-error --title="Unmount ISO Image" \
-                   --passivepopup="[Error] Can't Unmount $1: ISO not mounted"
-   exit 1
+        kdialog --icon=ks-error --title="Unmount ISO Image" \
+                   --passivepopup="[Error] Can't Unmount $1: ISO not mounted OR Wrong Password"
+        exit 1
 fi
-
 exit 0

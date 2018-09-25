@@ -19,15 +19,19 @@ MOUNTEXIT=""
 cd /tmp/
 mkdir -p /tmp/$2
 
-sudo  mount -o loop $1 /tmp/$2
+password=$(kdialog --password "Enter your password")
+
+
+echo $password | sudo -S  mount -o loop $1 /tmp/$2
 MOUNTEXIT=$?
 
 if [ "$MOUNTEXIT" = "0" ]; then
-   kdialog --icon=ks-media-optical-mount --title="Mount ISO Image" --passivepopup="[Finished] $2 mounted."
+        kdialog --icon=ks-media-optical-mount --title="Mount ISO Image" --passivepopup="[Finished] $2 mounted."
 else
-   kdialog --icon=ks-error --title="Mount ISO Image" \
-                   --passivepopup="[Error] Can't mount $2: Already mount or check image integrity."
-   exit 1
+        kdialog --icon=ks-error --title="Mount ISO Image" \
+                   --passivepopup="[Error] Can't mount $2: Already mount or Wrong Password"
+        exit 1
 fi
 
+    
 exit 0
